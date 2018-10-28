@@ -12,6 +12,7 @@ public class LinkedList implements List {
             next = null;
         }
     }
+
     private Node head;
     private int size = 0;
 
@@ -20,14 +21,9 @@ public class LinkedList implements List {
     }
     @Override
     public void add(Object obj) throws Exception {
-        if (head.next == null){
-            head = new Node(obj);
-        }
-        else{
-            Node current = head;
-            head =  new Node(obj);
-            head.next = current;
-        }
+        Node current = head;
+        head =  new Node(obj);
+        head.next = current;
         size++;
     }
 
@@ -41,8 +37,8 @@ public class LinkedList implements List {
 
     @Override
     public void add(int pos, Object obj) throws Exception {
-//        if (pos < 0 || pos > size)
-//            throw new Exception("invalid position");
+        if (pos < 0 || pos > size)
+            throw new Exception("invalid position");
         Node newNode = new Node(obj);
         if (pos == 0){
             newNode.next = head;
@@ -75,7 +71,7 @@ public class LinkedList implements List {
         Node previous = find(pos-1);
         Node current = previous.next;
         previous.next = current.next;
-        --size;
+        size--;
         return current.data;
     }
 
